@@ -123,8 +123,10 @@ void hw_hdma_cmd(byte c)
 		div_advance(advance << cpu.speed);
 		timer_advance(advance << cpu.speed);
 		sound_advance(advance);
-		
-		if ((R_STAT&0x03) == 0x00) hw_hdma(); /* SEE COMMENT A ABOVE */
+
+		/* FIXME: according to docs, hdma should not be started during hblank
+		(Extreme Ghostbusters game does, but it also works without this line) */
+		/*if ((R_STAT&0x03) == 0x00) hw_hdma();*/ /* SEE COMMENT A ABOVE */
 		return;
 	}
 	
